@@ -114,3 +114,5 @@ function validateEmail(field){
     function resetForm(){
         sendEmailForm.reset();
     }
+
+    //End
