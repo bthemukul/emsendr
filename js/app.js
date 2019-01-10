@@ -1,8 +1,10 @@
 //Variables
-const sendBtn = document.getElementById('sendBtn');
-const email = document.getElementById('email');
-const subject = document.getElementById('subject');
-const message = document.getElementById('message');
+const sendBtn = document.getElementById('sendBtn'),
+email = document.getElementById('email'),
+subject = document.getElementById('subject'),
+message = document.getElementById('message'),
+resetButton = document.getElementById('resetBtn'),
+sendEmailForm = document.getElementById('email-form');
 
 
 
@@ -16,6 +18,11 @@ function eventListeners(){
     email.addEventListener('blur', validateField );
     subject.addEventListener('blur', validateField );
     message.addEventListener('blur', validateField );
+
+    //Reset form on button press & email send.
+    resetButton.addEventListener('click', resetForm );
+    // Send Email
+    sendEmailForm.addEventListener('submit', sendEmail );
 }
 
 
@@ -25,6 +32,34 @@ function eventListeners(){
 function appInit(){
     //Disabled on default load
     sendBtn.disabled = true;
+}
+
+// Send Email (Execute)
+function sendEmail(e){
+    e.preventDefault();
+    //Show the spinner
+    const spinner = document.querySelector('#spinner');
+    spinner.style.display = 'block';
+
+    //Show the spinner
+    const sendEmailImg = document.createElement('img');
+    sendEmailImg.src = 'img/mail.gif';
+    sendEmailImg.style.display = 'block';
+
+    //Hide spinner and show Email Send Acknowledgement
+    setTimeout(function(){
+            //Hide the spinner
+            spinner.style.display = 'none';
+
+            //Show the Sent Ack Image
+            document.querySelector('#loaders').appendChild(sendEmailImg);
+
+            //Refresh after an email is sent
+            setTimeout(function(){
+                sendEmailForm.reset();
+                sendEmailImg.remove();
+            } , 4000);
+    }, 2000 );
 }
 
 // Validation of entered data
@@ -73,4 +108,9 @@ function validateEmail(field){
         field.style.borderBottomColor = 'red';
         field.classList.add('error');        
     }        
+    }
+
+    // Reset the Form
+    function resetForm(){
+        sendEmailForm.reset();
     }
