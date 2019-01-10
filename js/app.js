@@ -58,7 +58,7 @@ function sendEmail(e){
             setTimeout(function(){
                 sendEmailForm.reset();
                 sendEmailImg.remove();
-            } , 4000);
+            },4000);
     }, 2000 );
 }
 
