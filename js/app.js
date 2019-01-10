@@ -62,7 +62,9 @@ function sendEmail(e){
     }, 2000 );
 }
 
-// Validation of entered data
+/* Validation of entered data [The main Validation function which 
+then calls child functions which validate on individual 
+norms like length or email distinctive features.] */
 function validateField(){
     let error ;
     // Validate length of fields
@@ -96,7 +98,8 @@ function validateLength(field){
 
 }
 
-//Validate email fields
+/* Function Validate email fields (finds if @ is present or not, in the input Email Id, 
+and if present then reflects the green color on the base line strip.) */
 function validateEmail(field){
     let emailText = field.value;
 
@@ -110,7 +113,7 @@ function validateEmail(field){
     }        
     }
 
-    // Reset the Form
+    // Reset the Form when the RESET key is pressed
     function resetForm(){
         sendEmailForm.reset();
     }
